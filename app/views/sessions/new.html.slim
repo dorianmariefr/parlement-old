@@ -1,0 +1,12 @@
+h1 Log in
+
+= form_for :session, url: session_path do |f|
+  .mb-4
+    = f.label :name, "Name"
+    = f.text_field :name, autocomplete: "username", value: params.dig(:session, :name)
+
+  .mb-4
+    = f.label :password, "Password"
+    = f.password_field :password, autocomplete: "current-password", value: params.dig(:session, :password)
+
+  p= f.submit "Log in"

@@ -1,0 +1,7 @@
+h1= @user.name
+
+- if can? :edit?, @user
+  p= link_to "Edit user", [:edit, @user]
+
+- if can? :destroy?, @user
+  = button_to "Delete user", @user, method: :delete, class: "button-link mb-4 text-red-600"

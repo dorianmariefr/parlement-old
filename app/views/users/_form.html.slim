@@ -1,0 +1,13 @@
+- user = local_assigns.fetch(:user)
+- submit = local_assigns.fetch(:submit)
+
+= form_for user do |f|
+  .mb-4
+    = f.label :name, "Name"
+    = f.text_field :name, autocomplete: "username"
+
+  .mb-4
+    = f.label :password, "Password"
+    = f.password_field :password, autocomplete: "new-password"
+
+  p= f.submit submit
