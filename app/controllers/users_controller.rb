@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = authorize policy_scope(User).all
+    authorize User.new
+    @users = policy_scope(User).all
   end
 
   def show

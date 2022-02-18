@@ -18,6 +18,8 @@ html
         => link_to "Register", new_user_path, class: "font-bold"
         => link_to "Log in", new_session_path
       => link_to "Users", users_path
+      - if current_user
+        => link_to "People", people_path
 
     - if alert.present?
       p.text-red-600= alert

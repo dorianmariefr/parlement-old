@@ -36,6 +36,6 @@ class UserPolicy < ApplicationPolicy
   private
 
   def self?
-    user? && record && user == record
+    user? && user == record
   end
 end
