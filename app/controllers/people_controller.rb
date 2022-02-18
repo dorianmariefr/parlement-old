@@ -20,7 +20,40 @@ class PeopleController < ApplicationController
     authorize @person
 
     if @person.save
+      redirect_to @person, notice: "Person created"
     else
+      flash.now.alert = @person.alert
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @person.update(person_params)
+      redirect_to @person, notice: "Person created"
+    else
+      flash.now.alert = @person.alert
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @person.destroy!
+
+    redirect_to people_path, notice: "Person deleted"
+  end
+
+  private
+
+  def load_person
+    @person = authorize(
+      policy_scope(Person).where(user: current_user).find(params[:id])
+    )
+  end
+
+  def person_params
+    params.require(:person).permit(:given_name, :family_name)
   end
 end

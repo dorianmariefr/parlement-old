@@ -1,0 +1,13 @@
+- person = local_assigns.fetch(:person)
+- submit = local_assigns.fetch(:submit)
+
+= form_for person do |f|
+  .mb-4
+    = f.label :given_name, "Given name"
+    = f.text_field :given_name
+
+  .mb-4
+    = f.label :faminly_name, "Family name"
+    = f.text_field :family_name
+
+  p= f.submit submit
