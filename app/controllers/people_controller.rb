@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
 
   def index
     authorize Person.new(user: current_user)
-    @people = policy_scope(Person)
+    @people = policy_scope(Person).order(given_name: :asc, family_name: :asc)
   end
 
   def show
