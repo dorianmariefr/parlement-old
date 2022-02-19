@@ -2,5 +2,7 @@ h1
   b=> @person.given_name
   = @person.family_name
 
+p= link_to "Relations", [@person, :relations]
+
 p= link_to "Edit person", [:edit, @person]
 .mb-4= button_to "Delete person", @person, method: :delete, class: "button-link text-red-600"

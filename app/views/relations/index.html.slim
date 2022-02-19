@@ -1,0 +1,18 @@
+h1
+  b=> @person.given_name
+  = @person.family_name
+  ' 's relations
+
+p= link_to "New relation", [:new, @person, :relation]
+
+- if @child_of.any?
+  h2 Child of
+  = render @child_of
+
+- if @children.any?
+  h2 Children
+  = render @children
+
+- if @friends.any?
+  h2 Friends
+  = render @friends

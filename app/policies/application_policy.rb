@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class ApplicationPolicy
+  include Pundit::Authorization
+
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -8,6 +10,8 @@ class ApplicationPolicy
   end
 
   class Scope
+    include Pundit::Authorization
+
     attr_reader :user, :scope
 
     def initialize(user, scope)
@@ -18,11 +22,19 @@ class ApplicationPolicy
     def user?
       !!user
     end
+
+    def current_user
+      user
+    end
   end
 
   private
 
   def user?
     !!user
+  end
+
+  def current_user
+    user
   end
 end

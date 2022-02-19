@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_17_225615) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_18_175858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_17_225615) do
     t.index ["user_id"], name: "index_people_on_user_id"
   end
 
+  create_table "relations", force: :cascade do |t|
+    t.bigint "from_id", null: false
+    t.bigint "to_id", null: false
+    t.string "kind", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_id"], name: "index_relations_on_from_id"
+    t.index ["to_id"], name: "index_relations_on_to_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "password_digest"
     t.datetime "created_at", null: false
@@ -32,4 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_17_225615) do
   end
 
   add_foreign_key "people", "users"
+  add_foreign_key "relations", "people", column: "from_id"
+  add_foreign_key "relations", "people", column: "to_id"
 end
